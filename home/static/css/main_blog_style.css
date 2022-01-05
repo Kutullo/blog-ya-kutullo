@@ -1,0 +1,551 @@
+
+*{
+    margin: 0;
+    padding:0 ;
+
+}
+
+:root {
+            
+    --nev-color: #662d91;
+    --primary-color:#46245f;
+    --primary-heading:#662d91;
+    --secondary-color: darkgrey;
+    --font-color:black;
+    --font2-color:black;
+    --links-color:lightgray;
+    --bg-color: #E6E4EC;
+    --bg2-color: white;
+    --bg-image-desk:url(/static/img/blog.jpg);
+    --bg-image-mobi:url(/static/img/blogmobi.jpg);
+    --heading-color:#34294e;   
+    --button-color:#662d91;
+    --border-color:lightgrey;
+    --white-color: white;
+
+}
+
+[data-theme="dark"] {
+    
+    --nev-color: #230535;
+    --primary-color:#dfbb24;
+    --primary-heading:#c9c9c9;
+    --secondary-color: darkgrey;
+    --font-color:#d8d8d8;
+    --font2-color:white;
+    --links-color:lightgray;
+    --bg-color: #1b0028;
+    --bg2-color:#230535;
+    --bg-image-desk:url(/static/img/blogdark.jpg);
+    --bg-image-mobi:url(/static/img/mobidark.jpg);
+    --heading-color:#d1b026;
+    --button-color:#662d91;
+    --border-color:#100019;
+    --white-color: white;
+
+}
+
+
+
+
+
+body {
+    font-family:  "Roboto",Georgia, Times, serif;
+    font:14px/1.5 "Roboto","Arial",sans-serif;
+    padding: 0px;
+    margin: 0px;
+    color:black;
+    background-color: var(--bg-color);
+
+}
+body h1 
+{
+    font-size: 16pt ;
+}
+
+
+/* Global */
+.container{
+    width:85% ;
+    margin:0px auto 0px auto;
+    overflow: hidden;
+
+}
+
+
+/*Header */
+header {
+
+    position: fixed;
+    width: 100%;
+    height: 68px;
+    margin:0;
+    color:#423a5c;
+    z-index: 999;
+    top:0px;
+
+}
+
+nev {
+    display:none;
+    top:0;
+    width: 100%;
+    height: 68px;
+    min-width: 400px;
+    padding: 0;
+
+}
+
+.logo {
+    display: inline-block;
+    margin-right:10px;
+    width:10%;
+    height:45px;
+    justify-self:start;
+
+
+}
+
+nev ul {
+    display: block;
+    margin:10px 5px 0px 10px ;
+    width: auto;
+    padding: 0;
+
+}
+
+nev li{
+    display: inline;
+    top:0;
+    width : 85px;
+    height: 45px;
+    float:left;
+    margin: 0 2px 0 2px;
+    text-align: center;
+    
+    border-radius: 15px;
+}
+
+
+nev a{
+    display: block;
+    color:var(--primary-heading);
+    text-decoration: none;
+    font:  normal bold 11pt "Roboto" ;
+    line-height: 40px;
+
+}
+
+
+
+
+header a:hover{
+
+    background-color: #662d91;
+    color:var(--white-color);
+    border-radius: 10px;
+
+}
+header .current{
+
+    color:#ffffff;
+    border-radius: 10px;
+    border-bottom: #ffffff;
+
+}
+
+.user {
+    display: block;
+    margin-left: 10px;
+
+}
+
+
+/* Responsive nevigation .................................*/
+
+#Resp-nev {
+    display: block;
+    margin:0px ;
+    padding :0;
+    position: absolute;
+    width:0;
+    height: 95vh;
+    text-align:center;
+    background-color:var(--nev-color) ;
+    overflow: hidden;
+    transition: width 0.6s linear;
+    right: 0;
+
+
+}
+
+
+
+#Resp-nev ul{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    margin-top:65px;
+    position: absolute;
+    width: 100%;
+    list-style: none;
+
+
+}
+
+#Resp-nev li{
+    margin-bottom: 0.6em;
+    height: 50px;
+    width: 90%;
+    min-width: 200px;
+    font:  normal bold 12pt "Roboto" ;
+    line-height: 50px;
+
+}
+
+#Resp-nev a{
+    display:block;
+    text-decoration: none;
+    color:white;
+    text-align:center
+
+}
+
+.nev-toggle{
+    position: relative;
+    display: flex;
+    float:right;
+    justify-content:center;
+    width: 80px;
+    height: 100%;
+    align-items: center;
+    right :5%;
+    z-index: 999;
+
+
+}
+
+.nev-toggle .nev-burger,
+.nev-toggle .nev-burger::before,
+.nev-toggle .nev-burger::after {
+    display:block;
+    width: 35px ;
+    height:3px;
+    background-color: #662d91;
+    border-radius: 2px;
+    position: relative;
+    transition: all 0.5s ease-in-out;
+}
+
+.nev-toggle .nev-burger::before,
+.nev-toggle .nev-burger::after {
+    content:'';
+    position: absolute;
+}
+
+.nev-toggle .nev-burger::before{
+    bottom:7px;
+}
+
+.nev-toggle .nev-burger::after{
+    top:7px;
+}
+
+.nev-toggle.open .nev-burger,
+.nev-toggle.open .nev-burger::before,
+.nev-toggle.open .nev-burger::after {
+
+    background-color: white;
+
+}
+
+
+
+
+
+
+@media only screen and (min-width: 768px) {
+    /* For desktop: */
+
+    nev {
+        display:flex;
+        flex-flow: row;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+
+    .nev-toggle{
+        display: none;
+    }
+
+
+
+}
+
+
+
+
+.spacer {
+    height: 65px;
+
+}
+
+
+/*......................END of Header......................... */
+
+
+
+
+/*............Home page */
+
+#main-grid{
+
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--bg-color);
+    background-image: var(--bg-image-mobi);
+    background-size:cover;
+    background-position: bottom center;
+
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: row;
+    width: 100%;
+}
+
+section #home-content {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: start;
+    margin-top:20px ;
+    padding-left: 10px;
+    width: 80%;
+    height: 300px;
+    color:var(--font-color);
+    font: normal normal lighter 12pt 'Nunito' ;
+
+}
+
+section #text  {
+    align-items: left;
+
+}
+
+#home-content p {
+    margin-top:12px ;
+    font: bold normal bold 12pt 'Nunito' ;
+    font-weight:500;
+    line-height:16pt ;
+    color:var(--font-color) ;
+
+}
+
+
+section #home-content h1 {
+
+    color:var(--primary-color);
+    font: bold normal 21pt 'Nunito' ;
+    font-weight:500;
+    line-height: 30pt;
+}
+
+
+section #home-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+
+
+}
+
+section #home-image img {
+    margin: 0px;
+    padding: 0px;
+    height: 60%;
+    width: auto;
+
+}
+
+#home-links
+{
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font: italic normal normal 14pt '"Roboto"' ;
+
+}
+
+
+
+
+
+
+
+@media only screen and (min-width: 768px) {
+    /* For desktop: */
+
+    .container{
+        width:90% ;
+
+    }
+
+    #main-grid {
+         background-image: var(--bg-image-desk);
+        background-size:cover;
+        background-position: bottom center;
+    }
+
+    .row {
+        justify-content: start;
+    }
+
+
+    section #home-content {
+        margin-top:0px ;
+        justify-content: center;
+        width:45% ;
+        height: 80vh;
+    }
+
+
+    #home-image{
+        height: 90vh;
+    }
+
+    #home-links{
+        display: none;
+    }
+
+}
+
+button{
+    margin: 20px 10px 0px 5px;
+    height:40px;
+    width: 120px;
+    font: italic normal bold  10pt 'Nunito' ;
+    text-align: center;
+    background-color:var(--button-color);
+    color:white;
+    border-style: hidden;
+}
+
+.highlight  {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 35px;
+    border:2px solid #662d91 ;
+    border-radius: 10px;
+
+}
+
+
+
+/***************about-page**************************/
+
+#about-page {
+    height: 98vh;
+    background-color: #662d91;
+    color: #ffffff;
+}
+
+#about-page  #home-content h1 ,#about-page  #home-content p{
+
+    color: #ffffff;
+}
+
+
+
+*{
+    margin: 0;
+    padding:0 ;
+}
+
+:root {
+
+    --bg: #E6E4EC;
+}
+
+[data-theme="dark"] {
+
+    --bg: #230535;
+}
+body {
+    font-family: "Calibri" Verdana, Tahoma, sans-serif;
+    font:16px/1.5 "Calibri","Arial",sans-serif;
+    padding: 0;
+    margin: 0;
+    color:black;
+    background-color:var(--bg);
+    width: 100% ;
+    height: 95vh;
+
+}
+
+
+
+
+
+
+.switch-wrapper{
+
+    display: flex;
+    align-items: center;
+
+}
+.switch ,.switch2  {
+    position: relative;
+    display:inline-block;
+    cursor: pointer;
+    width: 45px;
+    height: 20px;
+    position: relative;
+    background-color:#1b0028 ;
+    transition: .4s ;
+    border-radius: 32px;
+
+}
+
+
+.slider,.slider2 {
+    position:absolute;
+    height: 16px;
+    width: 16px;
+    background-color: #662d91;
+    left: 4px;
+    bottom: 2px;
+    transition: .4s;
+    border-radius: 32px;
+}
+
+.switch-dark {
+    background-color: #E6E4EC;
+}
+
+.slide
+{
+    transform:translateX(24px);
+}
+
+
+                     
+

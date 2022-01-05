@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{%load static%}
+{%load widget_tweaks %}
+
+{% block title%} {{ article.title}} {% endblock %}
+{% block page_style %} href="{% static 'css/article_detail_style.css '%}?{% now "U" %};" {% endblock %}
+{% block header_style %} style="background-color:var(--bg-color);" {% endblock %}
+
+{% block content %}
+
+
+            <div class="spacer "></div>
+
+            <div class="container">
+
+                <section id="articles">
+
+
+
+                    <div class="article">
+
+                        {% if article.detail_header_image %}
+                            <div class="cover"><img src="{{ article.detail_header_image.url }}"> </div>
+                        {% endif %}
+
+                        <div class="article-heading">
+                            <h1>{{ article.title}}</h1>
+
+
+                            <div class="author-tag-container">
+
+                                <div class ="article-author"> By {{article.author}} <br>
+                                   <div class ="article-date">
+                                       {% if article.reading_min %}
+                                        •{{article.reading_min}}
+                                       {% endif %}
+                                        <span style="margin-left:12px ;"> {{ article.article_date}}</span>
+                                   </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+
+                        <article>
+                            {{article.content|safe}}
+
+                        </article>
+                        <br>
+                        <br>
+                        <div class ="article-tags">
+                                    <ul>
+                                        <li style="border:none;"> Tags:</li>
+                                        {% for tag in article.tag.all %}
+                                        <li> <a href="{% url 'tag_slug' tag.name %}">{{tag.name}} </a> </li>
+                                        {% endfor %}
+                                    </ul>
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <div class="spacer "></div>
+
+                <div class="comments">
+                    <h2>Comments</h2>
+                    <br>
+                    <form method="POST" action={% url 'article_details' article.slug %}>
+                        {% csrf_token %}
+
+                    <div class="comment-fields">
+                        {% render_field comment_form.name placeholder="Name" %}
+                        {% render_field comment_form.content placeholder="Comment " rows=5 cols=38 %}
+
+                    </div>
+                        <button type="submit" name="save" >Post Comment </button>
+
+
+                    </form>
+
+
+
+                    <br>
+                    {% if not article.comments.all %}
+                    No Comments ...
+                    {% else %}
+                        {% for comment in article.comments.all %}
+                        <p>
+
+                            <h4> {{comment.name}} - {{comment.date}}</h4>
+
+                            {{comment.content}}
+                        </p>
+                        <br>
+                        {% endfor %}
+                    {%endif %}
+
+                </div>
+
+
+
+
+            </div>
+
+
+
+
+
+
+{% endblock %}

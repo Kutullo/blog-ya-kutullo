@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{%load static%}
+
+{%load widget_tweaks %}
+{% block title%} User Login{% endblock %}
+{% block page_style %} href="{% static 'css/registration.css '%}?{% now "U" %};" {% endblock %}
+
+{% block content %}
+
+  <div class="register-page">
+                <h2>Login</h2>
+                <br>
+                 <div class="column">
+
+                   <form  method="POST">
+                        {% csrf_token %}
+                        {% render_field form.username placeholder="Username" %}
+                        {{ form.username.errors}}
+                        {% render_field form.password placeholder="Password" %}
+                        {{ form.password.errors}}
+                         <br>
+                        <input type="submit" value="Login">
+                    </form>
+
+                 </div>
+                <br>
+                <br>
+                <p>Dont have an account ? <span class="form-link-text"><a href="{%url 'register'%}">Sign up</a> </span></p>
+  </div>
+
+
+
+{% endblock %}

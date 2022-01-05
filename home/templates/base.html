@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> {% block title %}Personal blog | Kutullo {% endblock %} </title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main_blog_style.css'%}?{% now " U" %};">
+    <link rel="stylesheet" type="text/css"
+          {% block page_style %} href="{% static 'css/article_list_style.css '%}?{% now " U" %};" {% endblock %}>
+
+    <link rel="stylesheet" type="text/css"
+          {% block form_style %}  {% endblock %}>
+
+
+</head>
+
+    <body style="background-color:var(--bg-color);">
+
+        <header {% block header_style %}  {% endblock %} >
+
+            <div class="nev-toggle" onclick="RespNev()">
+                <div  class="nev-burger"> </div>
+            </div>
+
+            <nev>
+              <div class="logo">
+
+              </div>
+              <ul>
+                <li> <a  href="{% url 'home' %}"> Home </a></li>
+                 <li> <a href="{% url 'article' %}">Articles </a></li>
+                 <li> <a href="">Portfolio</a></li>
+                 <li> <a href="{% url 'contact' %}"> Contact</a></li>
+              </ul>
+
+                <div class="switch-wrapper">
+                    <div class="switch" >
+                        <div class="slider"></div>
+                    </div>
+                </div>
+
+
+              <ul class="user">
+                  {% if user.is_authenticated %}
+                  <li> <a  href="{% url 'logout' %}" > Logout</a></li>
+                  <li> <a  href="{% url 'profile'  %}" > Profile</a></li>
+                  {% else %}
+                  <li> <a href="{% url 'login' %}" >Log in</a></li>
+                  <li> <a href="{% url 'register' %}" class="highlight"> Sign up</a></li>
+                  {% endif %}
+              </ul>
+          </nev>
+
+          <div id="Resp-nev" >
+              <ul>
+                  <li> <a  href="{% url 'home' %}">  Home </a></li>
+                  <li> <a href="{% url 'article' %}">Articles </a></li>
+                  <li> <a href="">Portfolio</a></li>
+                  <li> <a href="{% url 'contact' %}"> Contact</a></li>
+                  <br>
+                  {% if user.is_authenticated %}
+                  <li> <a  href="{% url 'logout' %}" > Logout</a></li>
+                  <li> <a  href="{% url 'profile' %}" > Profile</a></li>
+
+                  {% else %}
+                  <li> <a  href="{% url 'login' %}" > Log in</a></li>
+
+                  <li>
+                      <a href="{% url 'register' %}"
+                         style="border: 1px solid rgb(243, 218, 74); border-radius: 10px ;">Sign up </a>
+                  </li>
+                  {% endif %}
+
+                  <br>
+
+                  <div class="switch-wrapper">
+                      <div class="switch2" >
+                          <div class="slider2"></div>
+                      </div>
+                  </div>
+
+
+              </ul>
+          </div>
+
+        </header>
+       {% block content %}
+        {% endblock %}
+
+       <script src="{% static 'scripts/mainscript.js' %}?{% now "U" %};"></script>
+
+    </body>
+
+
+</html>

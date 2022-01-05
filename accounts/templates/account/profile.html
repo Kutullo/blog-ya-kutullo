@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title%}Profile {% endblock %}
+{% block header_style %} style="background-color:var(--bg-color);" {% endblock %}
+{% block page_style %} href="{% static 'css/profile-page.css '%}?{% now "U" %};" {% endblock %}
+{% block content %}
+
+<div class="register-page">
+    <div class="spacer"></div>
+    <div class="container">
+        <section>
+            <div class="profile-info">
+                <div class="profile-pic">
+                    {% if user.profile.profile_pic.url %}
+                    <div class="profile-pic"><img src="{{ user.profile.profile_pic.url }}"></div>
+                    {% else %}
+                    <div class="profile-pic"><img src="{% static "../static/img/default.png" %}"></div>
+                    {% endif %}
+
+                </div>
+                <div class="user-names"><h3>{{user.profile.name}}</h3> </div>
+                <h3>{{user.profile.title}}</h3>
+                <div class="bio">
+                    <p>{{user.profile.bio}}</p>
+                </div>
+                <ul>
+                    {% if user.profile.location %}
+                    <li><img src="{% static "../static/img/location.svg" %}">{{user.profile.location}}</li>
+                    {% endif %}
+                    {% if user.profile.company %}
+                    <li><img src="{% static "../static/img/work.svg" %}">{{user.profile.company}}</li>
+                    {% endif %}
+                    {% if user.profile.public_email %}
+                    <li><img src="{% static "../static/img/msg.svg" %}">{{user.profile.public_email}}</li>
+                    {% endif %}
+                    {% if user.profile.website %}
+                    <li><img src="{% static "../static/img/globe.svg" %}"><a href="{{user.profile.website}}">{{user.profile.website}}</a></li>
+                    {% endif %}
+                </ul>
+            
+                <div class="edit-button">
+                    <a href="{% url "update_profile" %}">
+                       Edit
+                    </a>
+                </div>
+           
+
+            </div>
+            <div class="profile-feed">
+                <div class="title">
+                    <h3>Posts</h3>
+                </div>
+                <button onclick=location.href='{% url 'add_article' %}'>
+                    <span style="margin-right:15px;">+</span>  Add Post
+                </button>
+
+                {% for article in  user_articles%}
+                    <div class="post">
+                        <div class="title"><a href="{% url 'article_details' article.slug %}"><strong>{{ article.title}}</strong></a></div>
+                        <ul>
+                            <li><a href="{% url 'update_article' article.slug %}">Edit</a> </li>
+                            <li><a href="{% url 'delete_article' article.slug %}">Delete</a> </li>
+                            <li><a href="">Post</a> </li>
+                            <li><span style="font-style:italic;font-weight:300;">12/05/21</span> </li>
+                        </ul>
+                    </div>
+                {%endfor%}
+
+
+
+
+
+            </div>
+        </section>
+    </div>
+</div>
+
+{% endblock %}

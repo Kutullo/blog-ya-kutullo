@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{%load static%}
+{%load widget_tweaks %}
+
+{% block title%} Update account{% endblock %}
+{% block page_style %} href="{% static 'css/profile_update.css '%}?{% now "U" %};" {% endblock %}
+{% block header_style %} style="background-color:var(--bg-color);" {% endblock %}
+{% block content %}
+
+<div class="profile-update-page">
+    <div class="container">
+        <div class="spacer"></div>
+       
+        <div class="row">
+            <div class="profile-update-tb">
+                <div class="col-one">
+                    <div class="settings-nav">
+                        <ul>
+                            <a href="{% url 'update_account' %}"> 
+                                <li><img src="{% static "../static/img/default.png" %}">Account</li>
+                            </a>
+                            <a href="{% url 'update_profile' %}">
+                                <li class="current-tb"><img src="{% static "../static/img/default.png" %}">Profile</li>
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-two">
+                    <div class="title"><h3>Update Profile</h3></div>
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        {% if form.profile_pic %}
+                        <div class="profile-pic"><img src="{{ user.profile.profile_pic.url }}"></div>
+                        {% else %}
+                        <div class="profile-pic"><img src="{% static "../static/img/default.png" %}"></div>
+                        {% endif %}
+
+                        {% render_field form.profile_pic %}
+                        {{ form.profile_pic.errors}}
+                        <label for="Name">Name</label>
+                        {% render_field form.name placeholder="Name" %}
+                        {{ form.profile_pic.errors}}
+                        <label for="E-mail">Public  e-mail</label>
+                        {% render_field form.public_email placeholder="E-mail" %}
+                        {{ form.public_email.errors}}
+                        <label for="title">title</label>
+                        {% render_field form.title placeholder="Title" %}
+                        {{ form.title.errors}}
+                        <label for="Bio">Bio</label>
+                        {% render_field form.bio placeholder="Bio" %}
+                        {{ form.bio.errors}}
+                        <label for="location">Location</label>
+                        {% render_field form.location placeholder="Location" %}
+                        {{ form.location.errors}}
+                        <label for="Website">Website</label>
+                        {% render_field form.website placeholder="Website" %}
+                        {{ form.website.errors}}
+                        <label for="id_company">Company</label>
+                        {% render_field form.company placeholder="Company" %}
+                        {{ form.company.errors}}
+                        <br>
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}

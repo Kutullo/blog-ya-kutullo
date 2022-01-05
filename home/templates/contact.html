@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{%load static%}
+
+{%load widget_tweaks %}
+{% block title%} Contact Me{% endblock %}
+{% block page_style %} href="{% static 'css/contact.css '%}?{% now "U" %};" {% endblock %}
+{% block header_style %} style="background-color:var(--bg-color);" {% endblock %}
+{% block content %}
+
+<div class="contact-page">
+    <h2>Contact  {{ message_name }}</h2>
+    <br>
+    <div class="column">
+
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="message_name" placeholder="Your name">
+            <input type="email" name="message_email" placeholder="Email">
+            <textarea name="message" placeholder="Message"></textarea>
+            <br>
+            <input type="submit" value="Send message">
+        </form>
+
+    </div>
+    <br>
+
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{%load static%}
+
+{% block title%} Add article {% endblock %}
+{% block page_style %} href="{% static 'css/profile_update.css '%}?{% now "U" %};" {% endblock %}
+{% block header_style %} style="background-color:var(--bg-color);" {% endblock %}
+
+{% block content %}
+<div class="spacer"> </div>
+<div class="container">
+
+    
+    <form method="POST">
+        {% csrf_token %}
+        <h2>Delete Article  </h2>
+        <h3>are you sure you want to delete this post ?</h3>
+
+
+
+        <button type="submit">Confirm Delete</button>
+    </form>
+
+</div>
+
+
+
+
+{% endblock %}

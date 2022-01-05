@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{%load static%}
+{%load widget_tweaks %}
+
+{% block title%} Update account{% endblock %}
+{% block page_style %} href="{% static 'css/profile_update.css '%}?{% now "U" %};" {% endblock %}
+{% block header_style %} style="background-color:var(--bg-color);" {% endblock %}
+{% block content %}
+
+<div class="profile-update-page">
+    <div class="container">
+        <div class="spacer"></div>
+       
+        <div class="row">
+            <div class="profile-update-tb">
+                <div class="col-one">
+                    <div class="settings-nav">
+                        <ul>
+                            <a href="{% url 'update_account' %}">
+                                <li class="current-tb"><img src="{% static "../static/img/default.png" %}">Account</li>
+                            </a>
+                            <a href="{% url 'update_profile' %}">
+                                <li ><img src="{% static "../static/img/default.png" %}">Profile</li>
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-two">
+                    <div class="title"><h3>Update account</h3></div>
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+
+                        <label for="username">Username</label>
+                        {% render_field form.username placeholder="username" %}
+                        {{ form.username.errors}}
+                        <label for="email">Email</label>
+                        {% render_field form.email placeholder="" %}
+                        {{ form.email.errors}}
+                        <label for="first_name">First name</label>
+                        {% render_field form.first_name placeholder="" %}
+                        {{ form.first_name.errors}}
+                        <label for="last_name">Last name</label>
+                        {% render_field form.last_name placeholder="" %}
+                        {{ form.last_name.errors}}
+                        
+                        <br>
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}

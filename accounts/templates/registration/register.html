@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{%load static%}
+{%load widget_tweaks %}
+
+{% block title%} Create account{% endblock %}
+{% block page_style %} href="{% static 'css/registration.css '%}?{% now "U" %};" {% endblock %}
+{% block content %}
+
+
+<div class="register-page">
+    <h2>Create account</h2>
+    <br>
+    <div class="column">
+
+        <form method="POST">
+            {% csrf_token %}
+            {% render_field form.username placeholder="Username" %}
+            {{ form.username.errors}}
+            {% render_field form.email placeholder="E-mail" %}
+            {{ form.email.errors}}
+            {% render_field form.password1 placeholder="Password" %}
+            {{ form.password1.errors}}
+            <p>Password must contain atleast 8 characters </p>       
+            {% render_field form.password2  placeholder="Repeat password" %}
+            {{ form.password2.errors}}
+            <br>
+            <input type="submit" value="Sign up">
+        </form>
+
+    </div>
+    <br>
+   
+    <p>Already have an account ? <span class="form-link-text"><a href="{%url 'login'%}">Sign in</a> </span></p>
+
+</div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{%load static%}
+
+{% block title%} Add article {% endblock %}
+{% block page_style %} href="{% static 'css/profile_update.css '%}?{% now "U" %};" {% endblock %}
+{% block header_style %} style="background-color:var(--bg-color);" {% endblock %}
+{% block form_style %} href="{% static 'css/form.css '%}?{% now " U" %};" {% endblock %}>
+
+{% block content %}
+<div class="spacer"> </div>
+<div class="container">
+    <h2>Add Article post </h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form.as_p }}
+
+        <button>Post</button>
+    </form>
+
+</div>
+
+
+
+
+{% endblock %}

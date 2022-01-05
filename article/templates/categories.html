@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{%load static%}
+
+{% block title%} Category {% endblock %}
+
+{% block content %}
+
+<div class="spacer "></div>
+<span class="posts_title">
+    <h3>All {{cat}}'s Posts</h3>
+</span>
+
+{%for article in category_article %}
+
+
+            <div class="container">
+                <section id="articles">
+
+                    <div class="article">
+                        <div class="article-heading"> <h2> <a href="{% url 'article_detail' article.pk %}">
+                            {{ article.title}}</a> </h2>
+                        </div>
+                        <div class="article-details">
+                        {{ article.snip}}
+                        <p style="color: #60538a; ">Read more</p>
+                        </div>
+                        <div class ="article-tags"></div>
+                        <div class ="article-date">{{ article.article_date}}</div>
+                    </div>
+                </section>
+            </div>
+
+{% endfor %}
+
+
+
+
+
+{% endblock %}

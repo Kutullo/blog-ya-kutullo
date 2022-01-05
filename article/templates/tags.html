@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{%load static%}
+
+{% block title%} Tags {% endblock %}
+
+{% block content %}
+
+
+
+
+<div class="container">
+    <div class="spacer "></div>
+    <br>
+    <span class="posts_title">
+    <h3>{{tag}} Posts</h3>
+</span>
+    <section id="articles">
+{%for article in articles %}
+                    <div class="article">
+
+                        {% if article.list_header_image %}
+                            <div class="cover">
+                                <a href="{% url 'article_details' article.slug %}">
+                                <img src="{{ article.list_header_image.url }}">
+                                </a>
+                            </div>
+                        {% endif %}
+
+                        <div class="article-heading"> <h2> <a href="{% url 'article_details' article.slug %}">
+                            {{ article.title}}</a> </h2>
+                        </div>
+                        <div class="article-details">
+                            {{ article.snip}}
+                             ...<a href="{% url 'article_details' article.slug %}">
+                                 <span style="font-weight:300;"> Read more</span>
+                             </a>
+                        </div>
+
+                        <div class ="article-date">{{ article.article_date}}</div>
+                    </div>
+
+
+{% endfor %}
+
+   </section>
+</div>
+
+
+
+{% endblock %}
