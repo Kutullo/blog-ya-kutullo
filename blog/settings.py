@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'ckeditor',
     'accounts.apps.AccountsConfig',
     'widget_tweaks'
+    'whitenoise.runserver_nostatic',
+    'django.contrib.staticfiles',
 
 ]
 
