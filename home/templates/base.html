@@ -7,8 +7,7 @@
     <title> {% block title %}Personal blog | Kutullo {% endblock %} </title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/main_blog_style.css'%}?{% now " U" %};">
-    <link rel="stylesheet" type="text/css"
-          {% block page_style %} href="{% static 'css/article_list_style.css'%}?{% now " U" %};" {% endblock %}>
+    <link rel="stylesheet" type="text/css" {% block page_style %} href="{% static 'css/article_list_style.css'%}?{% now " U" %};" {% endblock %}>
 
     <link rel="stylesheet" type="text/css"
           {% block form_style %}  {% endblock %}>
