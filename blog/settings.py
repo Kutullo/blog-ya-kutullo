@@ -32,8 +32,6 @@ ALLOWED_HOSTS = ['blog-ya-kutullo.herokuapp.com','127.0.0.1:8000']
 # Application definition
 
 INSTALLED_APPS = [
-    'whitenoise.runserver_nostatic',
-    'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
